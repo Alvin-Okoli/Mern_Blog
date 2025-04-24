@@ -10,15 +10,18 @@ console.log(data)
         <>
         <div>
         <div id='card' className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ml-5">
-            {data.map((datas, index)=>(
+            {data.map((datas)=>(
                 <a onClick={()=>navigate(`/page/${datas._id}`)} className="cursor-pointer">
-                <div key={datas._id}>
-                    <img src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename}/>
-                    <h4>{datas.tag}</h4>
-                    <h2>{datas.title}</h2>
-                    <h5>{datas.snippet}</h5>
-                    <h5>{datas.updatedAt}</h5>
-                    {console.log(datas.image)}
+                <div key={datas._id} className="shadow rounded-lg m-5 min-h-[550px] pb-16 md:w-[450px]">
+                    <img src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg" />
+                    
+                    <div className="flex justify-between px-4 my-4 text-gray-500 text-l">
+                    <div>{datas.tag}</div>
+                    <div>{datas.updatedAt.slice(0, 10)}</div>
+                    </div>
+                    
+                    <div className="ml-8 font-semibold text-gray-800 my-2">{datas.title}</div>
+                    <div className="ml-8 text-gray-600 font-semibold mx-2">{datas.snippet}</div>
                 </div>
             </a>
             ))}
