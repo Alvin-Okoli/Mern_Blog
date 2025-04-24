@@ -1,0 +1,72 @@
+#nav{
+    height: 35vh;
+    width: 100%;
+}
+
+#title{
+    text-align: center;
+    width: 100%;
+    font-size: xx-large;
+    margin-top: -2%;
+}
+
+#navBg{
+    width: 100%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 12vh;
+    background-image: url(./images/auimage.jpeg);
+}
+
+#burger{
+    display: none;
+    margin: 20px;
+}
+
+#subjects{
+    color: rgb(41, 39, 39);
+    text-align: center;
+    margin-top: 1%;
+}
+
+#subjects a{
+    text-decoration: none;
+    color: rgb(41, 39, 39);
+    font-weight: 900;
+    margin: 0 10px;
+}
+
+#subjects a:hover{
+    color: rgb(230,174,14);
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    #nav{
+        height: 35vh;
+        width: 100%;
+    }
+
+    #subjects{
+        visibility: hidden;
+    }
+
+    #burger{
+        display: block;
+        margin: 20px;
+        background-color: darkgray;
+        width: 100px;
+        text-align: center;
+    }
+
+    #options{
+        position: fixed;
+        margin-top: 4px;
+    }
+
+    .options{
+        border: 0.5px solid rgb(231, 228, 228);
+        margin-bottom: 3px;
+        width: 100px;
+    }
+}
