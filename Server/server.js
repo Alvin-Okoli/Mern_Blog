@@ -9,6 +9,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const mongoKey = process.env.MONGOKEY
+const port = process.env.PORT || 3000
 
 //Express setup
 const app = express();
@@ -32,7 +33,7 @@ mongoose.connect(mongoKey)
 .then(response=> console.log('db connected'));
 
 //server connection
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
   console.log('Server is running')
 })
 

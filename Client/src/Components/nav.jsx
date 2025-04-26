@@ -1,6 +1,6 @@
 import { createElement, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom'
-import bgImage from './images/auimage.jpeg'
+import bgImage from '../images/auimage.jpeg'
 
 function Nav(){
 

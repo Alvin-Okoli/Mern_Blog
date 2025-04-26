@@ -12,8 +12,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'input password'],
     minlenght: [6, 'passowrd should be atleast 6 chars long']
+  },
+  name:{
+    type: String,
+    default: 'user'
+  },
+  admin: {
+    type: Boolean,
+    default: false
   }
-})
+}, {timestamps: true})
 
 userSchema.pre('save', async function(next){
   const salt = await bcrypt.genSalt();
@@ -23,18 +31,21 @@ userSchema.pre('save', async function(next){
 })
 
 userSchema.statics.login = async function(email, password){
-  const user = await findByOne(email)
+  const user = await this.findOne({email})
   if(user){
     const auth = await bcrypt.compare(password, user.password)
     if(auth){
+      user.password = undefined
       return user
     }
-    throw Error ('incorrect password')
+    throw Error ('invalid password')
   }
-  throw Error ('incorrect email')
+  throw Error ('invalid email')
 }
 
 const User = mongoose.model('user', userSchema);
+
+
 
 const blogSchema = new mongoose.Schema({
   title:{

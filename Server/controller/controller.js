@@ -2,11 +2,13 @@ const path = require("path")
 const {User, Blog} = require('../model/user')
 const jwt = require('jsonwebtoken')
 const moment = require('moment');
+require('dotenv').config()
+const secret = process.env.JWT_SECRET
 
 
 const maxAge = 3*24*60*60;
 const createToken = (id)=>{
-  const token = jwt.sign(id, 'This blog is awaesome and would tell the african story', {expiresIn: maxAge})
+  const token = jwt.sign(id, secret, {expiresIn: maxAge})
   return token
 }
 
@@ -39,10 +41,10 @@ module.exports.signup_post = async (req, res)=>{
   console.log(email, password)
 
   try{
-    const user = await User.create({email, password})
-    const token = createToken(user._id)
-    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000})
-    res.status(200).json(user)
+    let user = await User.create({email, password})
+    const token = createToken({id: user._id})
+    user = user.toObject({ getters: true, versionKey:false, password: false });
+    res.status(201).json({user, token})
   }
   catch(err){
     console.log(err)
@@ -54,23 +56,19 @@ module.exports.signup_post = async (req, res)=>{
 
 module.exports.login_post = async (req, res)=>{
   const {email, password} = req.body
-  console,log(email, password)
+  console.log(email, password)
 
   try{
     const user = await User.login(email, password);
-    const token = createToken(user._id);
-    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000})
-    res.status(200).send({user: user._id})
+    console.log(user)
+    const token = createToken({id: user._id});
+    res.status(200).send({user, token})
   }
   catch(err){
     console.log(err)
     const errors = handleErrors(err)
     res.status(400).send(errors)
   }
-}
-
-module.exports.logout_get = (req, res)=> {
-  res.status(200).send('logged out')
 }
 
 module.exports.home = async(req, res)=>{
@@ -140,19 +138,18 @@ module.exports.tag = async (req, res)=>{
 }
 
 
-module.exports.tagPost = async (req, res)=>{
-  const tag = req.params.culture
-  const post = req.params.post
-  console.log('its a tag ' + tag + ' and a post ' + post)
-
-  // try{
-  //   const data = await Blog.find({tag, _id: post})
-  //   res.status(200).json(data)
-  // }
-  // catch(err){
-  //   console.log(err)
-  //   res.status(400).send(err)
-  // }
+module.exports.getUser = async (req, res)=>{
+  const token = req.params.token
+  console.log('received: ',  token)
+  try{
+    const decoded = jwt.verify(token, secret)
+    const user = await User.findById(decoded.id).select('admin name')
+    console.log(user)
+    res.status(200).json(user)
+  }
+  catch(err){
+    console.log(err)
+    res.status(400).json(err)
+  }
 }
 
-// {title, snippet, body}
