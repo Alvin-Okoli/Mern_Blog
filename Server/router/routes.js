@@ -25,13 +25,13 @@ route.post('/signup', controller.signup_post)
 
 route.post('/login', controller.login_post)
 
-route.get('/logout', controller.logout_get)
-
 route.post('/createpage', upload.single('image'), controller.create_page)
 
 route.get('/page/:page', controller.page)
 
 route.get('/tag/:tag', controller.tag)
+
+route.get('/getUser/:token', controller.getUser)
 
 module.exports = route
 
