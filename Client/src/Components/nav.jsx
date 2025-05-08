@@ -1,6 +1,7 @@
 import { createElement, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom'
 import bgImage from '../images/auimage.jpeg'
+import NavOptions from '../Reusable Components/NavOptions';
 
 function Nav(){
 
@@ -13,6 +14,18 @@ function Nav(){
         }
     }
 
+    const options = [
+        {name: 'Home'},
+        {name: 'Culture'},
+        {name: 'Politics'},
+        {name: 'Entertainment'},
+        {name: 'Sports'},
+        {name: 'Technology'},
+        {name: 'Business'},
+        {name: 'Market'},
+        {name: 'Travel'}
+    ]
+
     return(
         <div id='nav' className='grid grid-cols-1'>
             
@@ -23,30 +36,21 @@ function Nav(){
             <div id='navBg' style={{height: "100px", backgroundImage: `url(${bgImage})`}} className='h-20 '></div>
             
             <div id='burger'>
-                <div onClick={handleClick} className='relative block md:hidden'>options</div>
-                {show && (<div className='absolute backdrop-blur-xs'>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/' className='mx-2 font-bold'>Home</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Culture' className='mx-2 font-bold border-y border-yellow-400'>Culture</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Politics' className='mx-2 font-bold'>Politics</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Entertainment' className='mx-2 font-bold'>Entertainment</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Sports' className='mx-2 font-bold'>Sports</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Technology' className='mx-2 font-bold'>Technology</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Business' className='mx-2 font-bold'>Business</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Market' className='mx-2 font-bold'>Market</NavLink></div>
-                    <div className='mx-2 my-5 font-bold'><NavLink to='/tag/Travel' className='mx-2 font-bold'>Travel</NavLink></div>
+                <div onClick={handleClick} className='relative block cursor-pointer md:hidden'>options</div> 
+                {show && (<div className='absolute backdrop-blur-2xl grid grid-cols-1 w-full px-auto md:hidden'>
+                    {options.map((option)=>(
+                        <NavOptions option={option} tailwindStyle='mx-2 my-5 font-bold text-center' key={option.name}/>
+                    ))}
                 </div>)}
             </div>
 
             <div className='text-center m-3 hidden md:block'>
-                <NavLink to='/' className='mx-2 font-bold'>Home</NavLink>
-                <NavLink to='/tag/Culture' className='mx-2 font-bold'>Culture</NavLink>
-                <NavLink to='/tag/Politics' className='mx-2 font-bold'>Politics</NavLink>
-                <NavLink to='/tag/Entertainment' className='mx-2 font-bold'>Entertainment</NavLink>
-                <NavLink to='/tag/Sports' className='mx-2 font-bold'>Sports</NavLink>
-                <NavLink to='/tag/Technology' className='mx-2 font-bold'>Technology</NavLink>
-                <NavLink to='/tag/Business' className='mx-2 font-bold'>Business</NavLink>
-                <NavLink to='/tag/Market' className='mx-2 font-bold'>Market</NavLink>
-                <NavLink to='/tag/Travel' className='mx-2 font-bold'>Travel</NavLink>
+                {
+                    options.map(option=>(
+                        <NavOptions option={option} tailwindStyle='mx-2 font-bold' key={option.name}/>
+                    ))
+                }
+                
             </div>
 
             <Outlet/>
