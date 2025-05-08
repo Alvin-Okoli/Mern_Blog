@@ -9,7 +9,7 @@ export function HomePageCard({data}){
             {data.map((datas)=>(
                 <NavLink key={datas._id} to={`/page/${datas._id}`}>
                 <div key={datas._id} className="shadow rounded-lg min-h-[550px] pb-16 mx-auto w-11/12">
-                <LazyLoadImage src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
+                <LazyLoadImage src={`https://mern-blog-rx3i.onrender.com/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
                 
                 <div className="flex justify-between px-4 my-4 text-gray-500 text-l">
                     <div>{datas.tag}</div>
@@ -32,7 +32,7 @@ export function TagPageCard({data}){
             {data.map((datas)=>(
                 <a key={datas._id} onClick={()=>navigate(`/page/${datas._id}`)}>
                 <div className="shadow rounded-lg m-5 min-h-[550px] pb-16 w-full">
-                <LazyLoadImage src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
+                <LazyLoadImage src={`https://mern-blog-rx3i.onrender.com/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
                 
                 <div className="flex justify-between px-4 my-4 text-gray-500 text-l">
                     <div>{datas.tag}</div>
