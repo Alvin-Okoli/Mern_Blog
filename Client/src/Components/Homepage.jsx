@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+const SuspenseHandler = lazy(()=> import('./Suspense'))
+import { HomePageCard } from "../Reusable Components/Cards";
 
 export default function Homepage(){
 
@@ -36,23 +38,11 @@ export default function Homepage(){
     return(
         <>
         <div>
-            <div className="grid grid-col-1  gap-4 gap-x-20 mx-3 md:mx-10 md:grid-cols-2 lg:grid-cols-3">
-            {data.map((datas)=>(
-                <NavLink to={`/page/${datas._id}`}>
-                <div key={datas._id} className="shadow rounded-lg m-5 min-h-[550px] pb-16">
-                    <img src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
-                    
-                    <div className="flex justify-between px-4 my-4 text-gray-500 text-l">
-                    <div>{datas.tag}</div>
-                    <div>{datas.updatedAt.slice(0, 10)}</div>
-                    </div>
-                    
-                    <div className="ml-8 font-bold text-gray-800 my-2">{datas.title}</div>
-                    <div className="ml-8 text-gray-600 font-semibold mx-2">{datas.snippet}</div>
-                </div>
-                </NavLink>
-            ))}
+            <Suspense fallback={<SuspenseHandler/>}>
+            <div className="grid grid-col-1  gap-4 md:gap-x-20  md:mx-10 md:grid-cols-2 lg:grid-cols-3">
+                <HomePageCard data={data}/>
             </div>
+            </Suspense>
 
             <div  className="flex justify-center mb-5">
             {no === 0? null :<button onClick={()=>{setNo(no-1)}}  className="mr-5 border border-black rounded-full p-2 w-18">Prev</button>}
