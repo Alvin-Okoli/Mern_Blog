@@ -22,7 +22,6 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-      <Route path='login' element={<LoginForm/>}/>
       <Route element={<Nav/>}>
         <Route index element={<Homepage/>}></Route>
         <Route path='page/:page' element={<PostDetails/>} loader={FetchLink}></Route>
