@@ -1,7 +1,7 @@
 export const FetchLink = async ({ params })=>{
 
     const {page} = params
-    const res = await fetch(`http://localhost:3000/page/${page}`,{
+    const res = await fetch(`https://mern-blog-rx3i.onrender.com/page/${page}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ export const FetchLink = async ({ params })=>{
 export const tagFetch = async ({ params })=>{
 
     const {tag} = params
-    const res = await fetch(`http://localhost:3000/tag/${tag}`,{
+    const res = await fetch(`https://mern-blog-rx3i.onrender.com/tag/${tag}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
