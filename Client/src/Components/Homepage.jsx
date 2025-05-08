@@ -11,7 +11,7 @@ export default function Homepage(){
     useEffect(()=>{
         const fetchdata = async ()=>{
             try{
-                const res = await fetch(`http://localhost:3000/?p=${no}`,{
+                const res = await fetch(`https://mern-blog-rx3i.onrender.com/?p=${no}`,{
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
