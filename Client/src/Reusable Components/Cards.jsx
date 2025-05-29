@@ -10,9 +10,9 @@ export function HomePageCard({data}){
                 data.map((datas)=>(
                 <div key={datas._id} className="shadow rounded-lg h-[500px] pb-6 mx-auto w-10/12 my-8 relative lg:min-w-96 lg:w-full">
                 <NavLink to={`/page/${datas._id}`}>
-                    <LazyLoadImage src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[300px] w-full object-center rounded-t-lg"/>
+                    <LazyLoadImage src={`https://mern-blog-rx3i.onrender.com/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
                 </NavLink>
-                
+
                 <div className="px-4">
                     <div className="flex justify-between my-4 text-gray-500 text-sm">
                         <div>{datas.tag}</div>
@@ -42,7 +42,7 @@ export function TagPageCard({data}){
                 data.map((datas)=>(
                     <div key={datas._id} className="shadow rounded-lg h-[500px] pb-6 mx-auto w-10/12 my-8 relative lg:min-w-96 lg:w-full">
                         <a onClick={()=>navigate(`/page/${datas._id}`)}>
-                            <LazyLoadImage src={`http://localhost:3000/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[300px] w-full object-center rounded-t-lg cursor-pointer"/>
+                             <LazyLoadImage src={`https://mern-blog-rx3i.onrender.com/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
                         </a>
                         
                         <div className="px-4">

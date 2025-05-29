@@ -13,7 +13,9 @@ export default function PostDetails(){
             <div  className="grid grid-col-1 lg:grid-cols-[70fr_30fr] lg:gap-4 mx-4 mb-10">
                 <div className=" lg:px-10">
                     <div className="text-4xl my-5 text-center font-bold font-serif">{blog.title}</div>
-                        <img src={`http://localhost:3000/uploads/${blog.image.filename}`} alt={blog.image.filename} className='mx-auto my-10 w-full h-[500px] object-contain'/>
+
+                        <img src={`https://mern-blog-rx3i.onrender.com/uploads/${blog.image.filename}`} alt={blog.image.filename} className='mx-auto my-10 w-full h-[500px]'/>
+
                         <h5 className="my-2"><span className="font-semibold">Updated at:</span> <span className="font-light">{blog.updatedAt.slice(0, 10)}</span></h5>
                         <h5 className="font-semibold my-3">{blog.tag}</h5>
                         <h5 className="font-semibold mb-6">{blog.snippet}</h5>
