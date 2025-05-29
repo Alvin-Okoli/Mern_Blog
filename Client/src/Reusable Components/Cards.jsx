@@ -8,7 +8,7 @@ export function HomePageCard({data}){
         <>
             {data && 
                 data.map((datas)=>(
-                <div key={datas._id} className="shadow rounded-lg h-[500px] pb-6 mx-auto w-10/12 my-8 relative lg:min-w-96 lg:w-full">
+                <div key={datas._id} className="shadow rounded-lg h-128 pb-6 mx-auto w-10/12 my-8 relative lg:min-w-96 lg:w-full">
                 <NavLink to={`/page/${datas._id}`}>
                     <LazyLoadImage src={`https://mern-blog-rx3i.onrender.com/uploads/${datas.image.filename}`} alt={datas.filename} className="h-[400px] w-full rounded-t-lg"/>
                 </NavLink>
