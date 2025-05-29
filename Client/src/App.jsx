@@ -15,6 +15,7 @@ import Content from './Components/content.jsx'
 import CreatePage from './Components/create.jsx'
 import { FetchLink, tagFetch } from './Loader functions/loaders.jsx'
 import IsAdmin from './Routeprotection/AdminProtection.jsx'
+import Footer from './Components/Footer.jsx'
 
 
 function App() {
